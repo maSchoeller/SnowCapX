@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SnowCapX.Lib.Core.Utilities
 {
-    public class LoopWorker : ILoopWorker
+    internal class LoopWorker : ILoopWorker
     {
         private readonly Func<CancellationToken, Task> _callback;
         private CancellationTokenSource _cts;

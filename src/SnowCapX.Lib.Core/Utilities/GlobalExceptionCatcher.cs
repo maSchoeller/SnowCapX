@@ -8,6 +8,8 @@ namespace SnowCapX.Lib.Core.Utilities
 {
     public class GlobalExceptionCatcher
     {
+        //Todo: Class get not automatically resolved it must be explicity reuquested. Make a Workaround
+
         public GlobalExceptionCatcher(ILogger<GlobalExceptionCatcher>? logger)
         {
             TaskScheduler.UnobservedTaskException += (s, e) =>

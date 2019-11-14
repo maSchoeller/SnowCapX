@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SnowCapX.Lib.Core.Utilities
 {
-    public class LoopWorkerFactory : ILoopWorkerFactory
+    internal class LoopWorkerFactory : ILoopWorkerFactory
     {
         public static readonly string ConfigurationSectionName = "LoopWorker";
         private readonly IConfiguration _configuration;
