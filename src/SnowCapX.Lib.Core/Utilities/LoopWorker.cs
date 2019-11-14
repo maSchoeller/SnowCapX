@@ -10,8 +10,8 @@ namespace SnowCapX.Lib.Core.Utilities
     internal class LoopWorker : ILoopWorker
     {
         private readonly Func<CancellationToken, Task> _callback;
-        private CancellationTokenSource _cts;
-        private Task _task;
+        private CancellationTokenSource? _cts;
+        private Task? _task;
 
         public LoopWorker(LoopWorkerOptions options, Func<CancellationToken, Task> callback)
         {
@@ -31,7 +31,7 @@ namespace SnowCapX.Lib.Core.Utilities
         private async Task Loop()
         {
 
-            var token = _cts.Token;
+            var token = _cts!.Token;
             DateTime offset = DateTime.Now;
             while (!token.IsCancellationRequested)
             {
@@ -59,15 +59,15 @@ namespace SnowCapX.Lib.Core.Utilities
         public void StopWorker()
         {
             if (!IsRunning) throw new InvalidOperationException($"Loop is not running.");
-            _cts.Cancel();
-            _cts.Dispose();
+            _cts?.Cancel();
+            _cts?.Dispose();
             IsRunning = false;
         }
 
         public void Dispose()
         {
-            _cts.Cancel();
-            _cts.Dispose();
+            _cts?.Cancel();
+            _cts?.Dispose();
             IsRunning = false;
         }
 

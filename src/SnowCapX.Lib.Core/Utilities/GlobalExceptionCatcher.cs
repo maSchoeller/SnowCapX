@@ -8,7 +8,7 @@ namespace SnowCapX.Lib.Core.Utilities
 {
     public class GlobalExceptionCatcher
     {
-        //Todo: Class get not automatically resolved it must be explicity reuquested. Make a Workaround
+        //Todo: Class get not automatically resolved it must be explicitly requested. Make a Workaround
 
         public GlobalExceptionCatcher(ILogger<GlobalExceptionCatcher>? logger)
         {
