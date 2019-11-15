@@ -30,7 +30,6 @@ namespace SnowCapX.Lib.Core.Utilities
 
         private async Task Loop()
         {
-
             var token = _cts!.Token;
             DateTime offset = DateTime.Now;
             while (!token.IsCancellationRequested)
@@ -59,16 +58,16 @@ namespace SnowCapX.Lib.Core.Utilities
         public void StopWorker()
         {
             if (!IsRunning) throw new InvalidOperationException($"Loop is not running.");
-            _cts?.Cancel();
-            _cts?.Dispose();
+            _cts!.Cancel();
             IsRunning = false;
         }
 
         public void Dispose()
         {
-            _cts?.Cancel();
-            _cts?.Dispose();
-            IsRunning = false;
+            if (IsRunning)
+            {
+                StopWorker();
+            }
         }
 
     }

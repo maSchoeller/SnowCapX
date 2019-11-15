@@ -5,8 +5,11 @@ using System.Text;
 
 namespace SnowCapX.Lib.Core.Settings.Databases
 {
-    public class DatabaseSettingsProvider : ISettingsProvider
+    internal class DatabaseSettingsProvider : ISettingsProvider
     {
+        public static readonly string ConfigurationPath = "Settings:Sqlite";
+        public static readonly string DefaultSqliteFile = "dronesettings.db";
+
         private readonly SettingsContext _context;
 
         public DatabaseSettingsProvider(SettingsContext context)
