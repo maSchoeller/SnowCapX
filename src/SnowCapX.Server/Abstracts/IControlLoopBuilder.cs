@@ -12,6 +12,6 @@ namespace SnowCapX.Server.Abstracts
 
         void Use(Func<ControlPoint, ControlPoint> middleware);
 
-        IHostedService Build();
+        IControlLoop Build();
     }
 }

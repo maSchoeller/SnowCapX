@@ -6,6 +6,8 @@ namespace SnowCapX.Server.Abstracts
 {
     public interface IDroneServerContext
     {
+        IServiceProvider Provider { get; }
+
         IMovementSource MovementSource { get; }
 
         IDroneServerEnviroment Enviroment { get; }

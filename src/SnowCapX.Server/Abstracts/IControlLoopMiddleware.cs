@@ -8,7 +8,7 @@ namespace SnowCapX.Server.Abstracts
     /// <summary>
     /// Provides the possibility to encapsulate a <see cref="ControlPoint"/> in a class.
     /// </summary>
-    public interface ILoopControlMiddleware
+    public interface IControlLoopMiddleware
     {
         /// <summary>
         /// The control point that is to be executed.
