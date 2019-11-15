@@ -10,7 +10,7 @@ namespace SnowCapX.Server.Movements
     {
         public (Vector3 Position, double RotorPower) Convert(Vector3 direction, double speed)
         {
-            throw new NotImplementedException();
+            return (Vector3.Zero, 0);
         }
     }
 }

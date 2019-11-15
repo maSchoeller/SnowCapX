@@ -8,11 +8,15 @@ namespace SnowCapX.Server.Contexts
     public class DroneServerContext : IDroneServerContext
     {
 
-        public DroneServerContext(IMovementSource movementSource, IDroneServerEnviroment enviroment)
+        public DroneServerContext(IMovementSource movementSource, IDroneServerEnviroment enviroment, IServiceProvider provider)
         {
             MovementSource = movementSource ?? throw new ArgumentNullException(nameof(movementSource));
             Enviroment = enviroment ?? throw new ArgumentNullException(nameof(enviroment));
+            Provider = provider ?? throw new ArgumentNullException(nameof(provider));
         }
+
+
+        public IServiceProvider Provider { get; }
 
         public IMovementSource MovementSource { get; }
 

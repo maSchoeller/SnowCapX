@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SnowCapX.Server.Loops
 {
-    internal class InlineMiddleware : ILoopControlMiddleware
+    internal class InlineMiddleware : IControlLoopMiddleware
     {
         private readonly Func<IDroneServerContext, ControlPoint, Task> _func;
         private readonly ControlPoint _next;

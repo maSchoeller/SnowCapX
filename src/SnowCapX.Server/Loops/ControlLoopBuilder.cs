@@ -25,7 +25,7 @@ namespace SnowCapX.Server.Loops
         public void Use(Func<ControlPoint, ControlPoint> middleware) =>
             middlewareList.Add(middleware);
 
-        public IHostedService Build()
+        public IControlLoop Build()
         {
             static Task Last() => Task.CompletedTask;
 

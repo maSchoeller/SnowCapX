@@ -13,7 +13,7 @@ namespace SnowCapX.Server.Loops
     /// <summary>
     /// contains the control loop and the logic to control the control loop.
     /// </summary>
-    internal class ControlLoop : IHostedService
+    internal class ControlLoop : IControlLoop
     {
         private readonly ControlPoint _pipe;
         private readonly IHostApplicationLifetime _lifetime;

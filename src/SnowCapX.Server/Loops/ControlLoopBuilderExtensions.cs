@@ -17,7 +17,7 @@ namespace SnowCapX.Server.Loops
         /// <param name="builder"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        public static IControlLoopBuilder Use<TMiddelware>(this IControlLoopBuilder builder, params object[] args) where TMiddelware : ILoopControlMiddleware
+        public static IControlLoopBuilder Use<TMiddelware>(this IControlLoopBuilder builder, params object[] args) where TMiddelware : IControlLoopMiddleware
         {
             if (builder is null)
             {
@@ -48,12 +48,12 @@ namespace SnowCapX.Server.Loops
 
             builder.Use(point =>
             {
-                if (!typeof(ILoopControlMiddleware).IsAssignableFrom(middlewaretype))
-                    throw new ArgumentException($"{middlewaretype.Name} must be implementing { typeof(ILoopControlMiddleware).Name}.");
+                if (!typeof(IControlLoopMiddleware).IsAssignableFrom(middlewaretype))
+                    throw new ArgumentException($"{middlewaretype.Name} must be implementing { typeof(IControlLoopMiddleware).Name}.");
                 var conArgs = new object[args.Length + 1];
                 conArgs[0] = point;
                 Array.Copy(args, 0, conArgs, 1, args.Length);
-                var middleware = ActivatorUtilities.CreateInstance(builder.ApplicationServices, middlewaretype, conArgs) as ILoopControlMiddleware
+                var middleware = ActivatorUtilities.CreateInstance(builder.ApplicationServices, middlewaretype, conArgs) as IControlLoopMiddleware
                     ?? throw new Exception(); //Todo: Change Exception to a more meaningful exception.
                 return middleware.InvokeAsync;
             });

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SnowCapX.Server.Loops
 {
-    public abstract class MiddlewareBase : ILoopControlMiddleware
+    public abstract class MiddlewareBase : IControlLoopMiddleware
     {
         protected readonly ControlPoint _next;
 

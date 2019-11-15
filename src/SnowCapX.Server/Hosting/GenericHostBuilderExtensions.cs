@@ -8,7 +8,7 @@ namespace SnowCapX.Server.Hosting
 {
     public static class GenericHostBuilderExtensions
     {
-        public static IHostBuilder UseDroneServerDefaults(this IHostBuilder builder, Action<IDroneServerBuilder> configure)
+        public static IHostBuilder ConfigureDroneHostDefaults(this IHostBuilder builder, Action<IDroneServerBuilder> configure)
         {
             if (builder is null)
             {
