@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using SnowCapX.Server.Hosting;
 using SnowCapX.Server.Loops;
+using SnowCapX.Server.Abstracts;
+using System.Numerics;
 
 namespace SnowCapX.Example1.Server
 {
@@ -30,14 +32,36 @@ namespace SnowCapX.Example1.Server
                 })
                 .ConfigureDroneHostDefaults(droneBuilder =>
                 {
+
+                    droneBuilder.ConfigureServices(services =>
+                    {
+                        //services.AddSingleton<IMovementResolver, MyMovementResolver>();
+                    });
+
                     droneBuilder.ConfigureLoop(loopBuilder =>
                     {
-                        loopBuilder.Invoke(async (context, next) =>
-                        {
-                            context.Provider.GetService<ILogger<Program>>().LogInformation("Testlogging");
-                            await next();
-                        });
+                        //loopBuilder.Invoke(async (context, next) =>
+                        //{
+                        //    context.Provider.GetService<ILogger<Program>>().LogInformation("Testlogging");
+                        //    await next();
+                        //});
                     });
                 });
+    }
+
+    internal class MyMovementResolver : IMovementResolver
+    {
+        private readonly ILogger<MyMovementResolver>? _logger;
+
+        public MyMovementResolver(ILogger<MyMovementResolver>? logger)
+        {
+            _logger = logger;
+        }
+
+        public (Vector3 Position, double RotorPower) Convert(Vector3 direction, double speed)
+        {
+            _logger?.LogInformation("From Resolver.");
+            return default;
+        }
     }
 }

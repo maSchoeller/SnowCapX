@@ -10,6 +10,8 @@ using SnowCapX.Lib.Core.Regulations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using System;
+using SnowCapX.Lib.Abstracts.Networking.SignalR;
+using SnowCapX.Lib.Core.Networking.SignalR;
 
 namespace SnowCapX.Lib.Core
 {
@@ -83,5 +85,18 @@ namespace SnowCapX.Lib.Core
             collection.TryAddSingleton<IPidRegulatorFactory, PidRegulatorFactory>();
             return collection;
         }
+
+
+        public static IServiceCollection AddSignalRHubConnectionFactory(this IServiceCollection collection)
+        {
+            if (collection is null)
+            {
+                throw new ArgumentNullException(nameof(collection));
+            }
+
+            collection.TryAddSingleton<IHubConnectionFactory, HubConnectionFactory>();
+            return collection;
+        }
+
     }
 }
