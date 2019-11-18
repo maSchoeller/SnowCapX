@@ -13,7 +13,7 @@ using System.Text;
 
 namespace SnowCapX.Server.Hosting
 {
-    internal class GenericDroneServerHostBuilder : IDroneServerBuilder
+    public class GenericDroneServerHostBuilder : IDroneServerBuilder
     {
         private readonly IHostBuilder _builder;
         private Action<IControlLoopBuilder>? _configure;

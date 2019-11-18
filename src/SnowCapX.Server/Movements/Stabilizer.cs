@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace SnowCapX.Server.Movements
 {
-    internal class Stabilizer : IHostedService
+    public class Stabilizer : IHostedService
     {
         private readonly ILoopWorker _worker;
         private readonly IMovementTarget _target;

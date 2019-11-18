@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SnowCapX.Server.Contexts
 {
-    internal class DroneServerEnviroment : IDroneServerEnviroment
+    public class DroneServerEnviroment : IDroneServerEnviroment
     {
     }
 }
