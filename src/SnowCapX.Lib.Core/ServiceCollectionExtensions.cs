@@ -87,7 +87,7 @@ namespace SnowCapX.Lib.Core
             return collection;
         }
 
-        public static IServiceCollection AddHubConncetionBuilder(this IServiceCollection collection)
+        public static IServiceCollection AddHubConnectionBuilder(this IServiceCollection collection)
         {
             if (collection is null)
             {
