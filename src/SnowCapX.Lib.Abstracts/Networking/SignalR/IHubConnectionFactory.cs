@@ -8,6 +8,7 @@ namespace SnowCapX.Lib.Abstracts.Networking.SignalR
 {
     public interface IHubConnectionFactory
     {
-        HubConnection CreateOrGetConnection(string path);
+        
+        HubConnection GetConnection(string path);
     }
 }
