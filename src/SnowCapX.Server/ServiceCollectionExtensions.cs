@@ -28,7 +28,6 @@ namespace SnowCapX.Server
             {
                 throw new ArgumentNullException(nameof(collection));
             }
-
             collection.TryAddSingleton<MovementHost>();
 
             //Todo: Handle if one of these three Services is registers remove the other two services or handle an alternative way?

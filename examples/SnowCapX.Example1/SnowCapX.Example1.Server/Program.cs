@@ -35,7 +35,7 @@ namespace SnowCapX.Example1.Server
                         loopBuilder.Invoke(async (context, next) =>
                         {
                             context.Provider.GetService<ILogger<Program>>().LogInformation("Testlogging");
-                            await next();
+                            await next().ConfigureAwait(false);
                         });
                     });
                 });

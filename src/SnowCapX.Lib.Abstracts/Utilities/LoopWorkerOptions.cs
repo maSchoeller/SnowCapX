@@ -10,7 +10,8 @@ namespace SnowCapX.Lib.Abstracts.Utilities
 
         public LoopWorkerOptions(int delay)
         {
-            Delay = delay;
+            
+               Delay = delay;
         }
     }
 }
