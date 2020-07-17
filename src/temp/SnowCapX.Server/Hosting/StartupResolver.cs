@@ -2,16 +2,16 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SnowCapX.Server.Abstracts;
-using SnowCapX.Server.Controlling;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SnowCapX.Server.Hosting
 {
     public static class StartupResolver
     {
-        public static readonly string ConfigurePorcessChainMethodename = "ConfigureProcessChain";
+        public static readonly string ConfigureControlLoopMethodename = "ConfigureControlLoop";
         public static readonly string ConfigureServicesMethodename = "ConfigureServices";
 
         internal static object? CreateStartup(Type startuptype, HostBuilderContext context)
@@ -47,36 +47,36 @@ namespace SnowCapX.Server.Hosting
             return startup;
         }
 
-        internal static bool InvokeConfigureProcessChain(object startup, ProcessChainBuilder builder, HostBuilderContext context)
+        internal static bool InvokeConfigureControlLoop(object startup, IControlLoopBuilder builder, HostBuilderContext context)
         {
             //Todo: Maybe later cover IServiceProvider for injecting every service.
 
             var startuptype = startup.GetType();
-            var methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(ProcessChainBuilder) });
+            var methode = startuptype.GetMethod(ConfigureControlLoopMethodename, new[] { typeof(IControlLoopBuilder) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new[] { builder });
                 return true;
             }
-            methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(ProcessChainBuilder), typeof(IConfiguration) });
+            methode = startuptype.GetMethod(ConfigureControlLoopMethodename, new[] { typeof(IControlLoopBuilder), typeof(IConfiguration) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new object[] { builder, context.Configuration });
                 return true;
             }
-            methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(ProcessChainBuilder), typeof(IConfiguration), typeof(IHostEnvironment) });
+            methode = startuptype.GetMethod(ConfigureControlLoopMethodename, new[] { typeof(IControlLoopBuilder), typeof(IConfiguration), typeof(IHostEnvironment) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new object[] { builder, context.Configuration, context.HostingEnvironment });
                 return true;
             }
-            methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(ProcessChainBuilder), typeof(IHostEnvironment) });
+            methode = startuptype.GetMethod(ConfigureControlLoopMethodename, new[] { typeof(IControlLoopBuilder), typeof(IHostEnvironment) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new object[] { builder, context.HostingEnvironment });
                 return true;
             }
-            methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(ProcessChainBuilder), typeof(IHostEnvironment), typeof(IConfiguration) });
+            methode = startuptype.GetMethod(ConfigureControlLoopMethodename, new[] { typeof(IControlLoopBuilder), typeof(IHostEnvironment), typeof(IConfiguration) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new object[] { builder, context.HostingEnvironment, context.Configuration });
@@ -88,31 +88,31 @@ namespace SnowCapX.Server.Hosting
         internal static bool InvokeConfigureServices(object startup, IServiceCollection services, HostBuilderContext context)
         {
             var startuptype = startup.GetType();
-            var methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(IServiceCollection) });
+            var methode = startuptype.GetMethod(ConfigureControlLoopMethodename, new[] { typeof(IServiceCollection) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new[] { services });
                 return true;
             }
-            methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(IServiceCollection), typeof(IConfiguration) });
+            methode = startuptype.GetMethod(ConfigureControlLoopMethodename, new[] { typeof(IServiceCollection), typeof(IConfiguration) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new object[] { services, context.Configuration });
                 return true;
             }
-            methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(IServiceCollection), typeof(IConfiguration), typeof(IHostEnvironment) });
+            methode = startuptype.GetMethod(ConfigureControlLoopMethodename, new[] { typeof(IServiceCollection), typeof(IConfiguration), typeof(IHostEnvironment) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new object[] { services, context.Configuration, context.HostingEnvironment });
                 return true;
             }
-            methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(IServiceCollection), typeof(IHostEnvironment) });
+            methode = startuptype.GetMethod(ConfigureControlLoopMethodename, new[] { typeof(IServiceCollection), typeof(IHostEnvironment) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new object[] { services, context.HostingEnvironment });
                 return true;
             }
-            methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(IServiceCollection), typeof(IHostEnvironment), typeof(IConfiguration) });
+            methode = startuptype.GetMethod(ConfigureControlLoopMethodename, new[] { typeof(IServiceCollection), typeof(IHostEnvironment), typeof(IConfiguration) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new object[] { services, context.HostingEnvironment, context.Configuration });

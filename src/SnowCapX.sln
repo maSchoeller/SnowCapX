@@ -3,15 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29430.225
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnowCapX.Lib.Abstracts", "SnowCapX.Lib.Abstracts\SnowCapX.Lib.Abstracts.csproj", "{9E6531DE-391F-4829-A94F-D7DB48AF03E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowCapX.Core", "SnowCapX.Core\SnowCapX.Core.csproj", "{1F0F0397-F987-4500-AFD9-4F155FEFAFF8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnowCapX.Server", "SnowCapX.Server\SnowCapX.Server.csproj", "{A1D090E4-7D09-4613-AD1B-DE4CCB238A08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowCapX.Server", "SnowCapX.Server\SnowCapX.Server.csproj", "{05DCA0C8-C446-4BC7-913E-DB179C3F420B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnowCapX.Client", "SnowCapX.Client\SnowCapX.Client.csproj", "{BB4B8388-4E30-4C19-A6C8-15A9514EBF07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowCapX.Client", "SnowCapX.Client\SnowCapX.Client.csproj", "{537BE561-5EA9-49F7-9CEC-1AFE2C5BA091}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnowCapX.Lib.Core", "SnowCapX.Lib.Core\SnowCapX.Lib.Core.csproj", "{48CCDB8F-431C-4758-BF62-6B071D558ABB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FE8868B5-A73E-4FA2-BF71-43FA2DD9F98E}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnowCapX.Lib.Core.Tests", "SnowCapX.Lib.Core.Tests\SnowCapX.Lib.Core.Tests.csproj", "{A1156066-0805-4137-925E-F38CCED72E60}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowCapX.Core.Tests", "SnowCapX.Core.Tests\SnowCapX.Core.Tests.csproj", "{F15A7ABF-E019-4C2E-BB62-1F63EC00736F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowCapX.Server.Tests", "SnowCapX.Server.Tests\SnowCapX.Server.Tests.csproj", "{A896CF8C-8EC0-42DB-9B77-8D6A0EB0A9F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowCapX.Client.Tests", "SnowCapX.Client.Tests\SnowCapX.Client.Tests.csproj", "{F56417AA-CB86-40CC-8A36-EDF5410FD437}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,26 +26,30 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9E6531DE-391F-4829-A94F-D7DB48AF03E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E6531DE-391F-4829-A94F-D7DB48AF03E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E6531DE-391F-4829-A94F-D7DB48AF03E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E6531DE-391F-4829-A94F-D7DB48AF03E9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1D090E4-7D09-4613-AD1B-DE4CCB238A08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1D090E4-7D09-4613-AD1B-DE4CCB238A08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1D090E4-7D09-4613-AD1B-DE4CCB238A08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1D090E4-7D09-4613-AD1B-DE4CCB238A08}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB4B8388-4E30-4C19-A6C8-15A9514EBF07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB4B8388-4E30-4C19-A6C8-15A9514EBF07}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB4B8388-4E30-4C19-A6C8-15A9514EBF07}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB4B8388-4E30-4C19-A6C8-15A9514EBF07}.Release|Any CPU.Build.0 = Release|Any CPU
-		{48CCDB8F-431C-4758-BF62-6B071D558ABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48CCDB8F-431C-4758-BF62-6B071D558ABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48CCDB8F-431C-4758-BF62-6B071D558ABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48CCDB8F-431C-4758-BF62-6B071D558ABB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1156066-0805-4137-925E-F38CCED72E60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1156066-0805-4137-925E-F38CCED72E60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1156066-0805-4137-925E-F38CCED72E60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1156066-0805-4137-925E-F38CCED72E60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F0F0397-F987-4500-AFD9-4F155FEFAFF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F0F0397-F987-4500-AFD9-4F155FEFAFF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F0F0397-F987-4500-AFD9-4F155FEFAFF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F0F0397-F987-4500-AFD9-4F155FEFAFF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05DCA0C8-C446-4BC7-913E-DB179C3F420B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05DCA0C8-C446-4BC7-913E-DB179C3F420B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05DCA0C8-C446-4BC7-913E-DB179C3F420B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05DCA0C8-C446-4BC7-913E-DB179C3F420B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{537BE561-5EA9-49F7-9CEC-1AFE2C5BA091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{537BE561-5EA9-49F7-9CEC-1AFE2C5BA091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{537BE561-5EA9-49F7-9CEC-1AFE2C5BA091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{537BE561-5EA9-49F7-9CEC-1AFE2C5BA091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F15A7ABF-E019-4C2E-BB62-1F63EC00736F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15A7ABF-E019-4C2E-BB62-1F63EC00736F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15A7ABF-E019-4C2E-BB62-1F63EC00736F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15A7ABF-E019-4C2E-BB62-1F63EC00736F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A896CF8C-8EC0-42DB-9B77-8D6A0EB0A9F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A896CF8C-8EC0-42DB-9B77-8D6A0EB0A9F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A896CF8C-8EC0-42DB-9B77-8D6A0EB0A9F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A896CF8C-8EC0-42DB-9B77-8D6A0EB0A9F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F56417AA-CB86-40CC-8A36-EDF5410FD437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F56417AA-CB86-40CC-8A36-EDF5410FD437}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F56417AA-CB86-40CC-8A36-EDF5410FD437}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F56417AA-CB86-40CC-8A36-EDF5410FD437}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

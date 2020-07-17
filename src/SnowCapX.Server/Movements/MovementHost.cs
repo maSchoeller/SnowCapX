@@ -1,38 +1,35 @@
 ﻿using SnowCapX.Server.Abstracts;
 using System;
 using System.Collections.Generic;
-using System.Numerics;
 using System.Text;
 
 namespace SnowCapX.Server.Movements
 {
-    internal class MovementHost : IMovementHost, IMovementSource, IMovementTarget
+    public class MovementHost
     {
-        private readonly IMovementResolver _resolver;
+        private readonly MovementSource _source;
+        private readonly MovementTarget _target;
+        private readonly IMovementTransformer _transformer;
 
-        public MovementHost(IMovementResolver resolver)
+        public MovementHost(MovementSource source,
+            MovementTarget target,
+            IMovementTransformer transformer)
         {
-            _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
+            _source = source ?? throw new ArgumentNullException(nameof(source));
+            _target = target ?? throw new ArgumentNullException(nameof(target));
+            _transformer = transformer ?? throw new ArgumentNullException(nameof(transformer));
         }
 
         public void Invoke()
         {
-            if (SetManual)
+            if (_source.SetManual)
             {
-                Target = (Position, Power);
+                _target.Target = (_source.Position, _source.Power);
             }
             else
             {
-                Target = _resolver.Convert(Direction, Speed);
+                _target.Target = _transformer.Convert(_source.Direction, _source.Speed);
             }
         }
-
-        public (Vector3 Position, double Power) Target { get; private set; }
-
-        public bool SetManual { get; set; }
-        public Vector3 Direction { get; set; }
-        public double Speed { get; set; }
-        public Vector3 Position { get; set; }
-        public double Power { get; set; }
     }
 }

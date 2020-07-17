@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CA1030: Use events where appropriate
+dotnet_diagnostic.CA1030.severity = none

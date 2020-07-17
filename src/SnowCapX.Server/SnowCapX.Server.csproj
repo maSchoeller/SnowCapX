@@ -4,22 +4,13 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
     <PackageId>SnowCapX.Server</PackageId>
-    <Version>0.1.1</Version>
+    <Version>0.2.0-alpha1</Version>
     <Authors>Marvin Schoeller</Authors>
     <Company>MaSchoeller</Company>
-    <!--<GeneratePackageOnBuild>true</GeneratePackageOnBuild>-->
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SnowCapX.Lib.Core\SnowCapX.Lib.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Networking\" />
+    <ProjectReference Include="..\SnowCapX.Core\SnowCapX.Core.csproj" />
   </ItemGroup>
 
 </Project>
