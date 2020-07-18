@@ -9,24 +9,39 @@ namespace SnowCapX.Lib.Core.Settings
 {
     public class SnowCapXSettings : ISettings
     {
-        public static readonly char SeperatonToken = ':';
+        public static readonly char SeperatorToken = ':';
 
         private readonly ISettingsProvider _provider;
         private readonly ILogger<SnowCapXSettings>? _logger;
         private readonly Dictionary<string, object> _bindings;
-        public SnowCapXSettings(IEnumerable<ISettingsProvider> provider, ILogger<SnowCapXSettings>? logger)
+        public SnowCapXSettings(
+            IEnumerable<ISettingsProvider> provider,
+            IEnumerable<ISettingsSynchronizationTrigger> triggers,
+            ILogger<SnowCapXSettings>? logger)
         {
             if (provider is null)
             {
                 throw new ArgumentNullException(nameof(provider));
             }
+            if (triggers is null)
+            {
+                throw new ArgumentNullException(nameof(triggers));
+            }
+
             _provider = new ChainedSettingsProvider(provider);
             _logger = logger;
             _bindings = new Dictionary<string, object>();
             _provider.SettingChanged += Provider_SettingChanged;
+            foreach (var trigger in triggers)
+            {
+                trigger.SychronisationRequested += (s, e) =>
+                {
+                    _provider.InvokeSychronisation();
+                };
+            }
             void Provider_SettingChanged(object sender, SettingsChangedEventArgs e)
             {
-                var splited = e.Key.Split(SeperatonToken);
+                var splited = e.Key.Split(SeperatorToken);
                 if (_bindings.TryGetValue(splited[0], out object binding))
                 {
                     var propInfo = binding.GetType().GetProperty(splited[1]);
@@ -61,8 +76,8 @@ namespace SnowCapX.Lib.Core.Settings
             {
                 var propInfo = sender.GetType().GetProperty(args.PropertyName);
                 var value = propInfo.GetValue(sender).ToString();
-                _provider.Set($"{key}{SeperatonToken}{args.PropertyName}", value);
-                _logger.LogInformation($"Setting changed from binding, Path: {key}{SeperatonToken}{args.PropertyName}; Value:{value}");
+                _provider.Set($"{key}{SeperatorToken}{args.PropertyName}", value);
+                _logger.LogInformation($"Setting changed from binding, Path: {key}{SeperatorToken}{args.PropertyName}; Value:{value}");
             }
             _bindings.Add(key, binding);
             return binding;
@@ -74,7 +89,7 @@ namespace SnowCapX.Lib.Core.Settings
             var bindingtype = typeof(TBinding);
             foreach (var propInfo in bindingtype.GetProperties())
             {
-                var propvalue = this.TryGet($"{key}{SeperatonToken}{propInfo.Name}", propInfo.PropertyType);
+                var propvalue = this.TryGet($"{key}{SeperatorToken}{propInfo.Name}", propInfo.PropertyType);
                 if (!(propvalue is null))
                 {
                     propInfo.SetValue(binding, propvalue);

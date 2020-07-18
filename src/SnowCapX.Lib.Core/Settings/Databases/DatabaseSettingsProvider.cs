@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SnowCapX.Lib.Core.Settings.Databases
 {
@@ -25,22 +26,38 @@ namespace SnowCapX.Lib.Core.Settings.Databases
 
         public event EventHandler<SettingsChangedEventArgs> SettingChanged; //Not in use
 
-        public void RaiseAllSettingsChanged()
+        public void InvokeSychronisation()
         {
-            //Todo: Implementing Event, iterate over the Database.
+            foreach (var dBsettings in _context.Values)
+            {
+                SettingChanged?.Invoke(this, new SettingsChangedEventArgs(dBsettings.Value, dBsettings.Id, true));
+            }
         }
 
-        public void Set(string key, string value)
+        public void Set(string key, string value, bool raiseFromSync = false)
         {
+            bool invokeUpdate = true;
             if (_context.Values.Find(key) is EFSettingsValue efvalue)
             {
-                efvalue.Value = value;
+                if (efvalue.Value != value)
+                {
+                    efvalue.Value = value;
+                }
+                else
+                {
+                    invokeUpdate = false;
+                }
             }
             else
             {
                 _context.Values.Add(new EFSettingsValue { Id = key, Value = value });
             }
             _context.SaveChanges();
+            if (!raiseFromSync && invokeUpdate)
+            {
+                SettingChanged?.Invoke(this, new SettingsChangedEventArgs(value, key));
+
+            }
         }
 
         public string? TryGet(string key)

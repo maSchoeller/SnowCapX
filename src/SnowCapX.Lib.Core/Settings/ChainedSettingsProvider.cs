@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SnowCapX.Lib.Core.Settings
 {
@@ -28,11 +29,11 @@ namespace SnowCapX.Lib.Core.Settings
         }
 
 
-        public void Set(string key, string value)
+        public void Set(string key, string value, bool raiseFromSync = false)
         {
             foreach (var provider in _providers)
             {
-                provider.Set(key, value);
+                provider.Set(key, value, raiseFromSync);
             }
         }
 
@@ -49,9 +50,12 @@ namespace SnowCapX.Lib.Core.Settings
             return null;
         }
 
-        public void RaiseAllSettingsChanged()
+        public void InvokeSychronisation()
         {
-            //Todo: Implementing Raising
+            foreach (var provider in _providers)
+            {
+                provider.InvokeSychronisation();
+            }
         }
     }
 }

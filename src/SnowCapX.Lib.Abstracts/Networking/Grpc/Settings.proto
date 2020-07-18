@@ -1,0 +1,18 @@
+﻿syntax = "proto3";
+import "google/protobuf/empty.proto";
+option csharp_namespace = "SnowCapX.Lib.Abstracts.Networking.Grpc";
+
+service SettingsService {
+  rpc UpdateSetting (SettingMessage) returns (google.protobuf.Empty) {}
+  rpc ReceiveUpdate (google.protobuf.Empty) returns (stream SettingMessage) {}
+  rpc GetSynchronizationNotificator (google.protobuf.Empty) returns (stream google.protobuf.Empty) {}
+  rpc InvokeSynchronization (google.protobuf.Empty) returns (google.protobuf.Empty) {}
+}
+
+
+message SettingMessage {
+    string Key = 1;
+    string Value = 2;
+    bool   RaiseFromSynchronization = 3;
+}
+

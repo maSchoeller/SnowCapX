@@ -2,26 +2,21 @@
 import "google/protobuf/empty.proto";
 option csharp_namespace = "SnowCapX.Lib.Abstracts.Networking.Grpc";
 
-service Controlling {
-
+service ControllingService {
   rpc UpdateDirection (stream DirectionMessage) returns (google.protobuf.Empty) {}
   rpc GetPosition (google.protobuf.Empty) returns (stream PositionMessage) {}
   rpc GetGpsLocation (google.protobuf.Empty) returns (stream GpsFix) {}
 }
 
 message GpsFix {
-
 }
-
 message PositionMessage {
     Vector3 Position = 1;
 }
-
 message DirectionMessage {
   Vector3 Direction = 1;
   double Speed = 2;
 }
-
 message Vector3 {
   double X = 1;
   double Y = 2;

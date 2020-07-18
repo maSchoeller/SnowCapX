@@ -11,15 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.11.3" />
+    <PackageReference Include="Grpc" Version="2.27.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SnowCapX.Lib.Core\SnowCapX.Lib.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Networking\" />
   </ItemGroup>
 
 </Project>
