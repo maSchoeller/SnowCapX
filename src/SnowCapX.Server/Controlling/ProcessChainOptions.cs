@@ -6,6 +6,6 @@ namespace SnowCapX.Server.Controlling
 {
     public class ProcessChainOptions
     {
-        public int Duration { get; set; } = 500;
+        public int Duration { get; set; } = 400;
     }
 }

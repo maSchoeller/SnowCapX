@@ -14,11 +14,11 @@ namespace SnowCapX.Examples.Example1
         static async Task Main(string[] args)
         {
             await Host.CreateDefaultBuilder()
-                            .ConfigureSnowCapHost(b =>
-                            {
-                                b.UseStartup<Startup>();
-                            })
-                            .RunConsoleAsync();
+                      .ConfigureSnowCapHost(b =>
+                      {
+                          b.UseStartup<Startup>();
+                      })
+                      .RunConsoleAsync();
         }
     }
 
@@ -26,7 +26,7 @@ namespace SnowCapX.Examples.Example1
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ISnowCapStabilizerHost, DefaultStabilizer>();
+            services.AddSingleton<ISnowCapStabilizer, DefaultStabilizer>();
         }
         public void ConfigureProcessChain(ProcessChainBuilder builder)
         {
@@ -38,18 +38,18 @@ namespace SnowCapX.Examples.Example1
         }
     }
 
-    public class DefaultStabilizer : ISnowCapStabilizerHost
+    public class DefaultStabilizer : ISnowCapStabilizer
     {
-        public bool IsRunning => true;
+        private readonly ILogger<DefaultStabilizer>? _logger;
 
-        public bool TryStart()
+        public DefaultStabilizer(ILogger<DefaultStabilizer>? logger = null)
         {
-            return true;
+            _logger = logger;
         }
 
-        public bool TryStop()
+        public void Invoke(MovementTarget target)
         {
-            return true;
+            _logger?.LogInformation("Stabilizer");
         }
     }
 }

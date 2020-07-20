@@ -67,7 +67,7 @@ namespace SnowCapX.Server.Hosting
             services.TryAddSingleton<MovementSource>();
             services.TryAddSingleton<MovementTarget>();
             services.TryAddSingleton<IMovementTransformer, DefaultMovementTransformer>();
-
+            services.TryAddSingleton<ISnowCapStabilizerHost, DefaultStabilizerHost>();
             services.AddHostedService<ServerStartupHost>();
         }
 
