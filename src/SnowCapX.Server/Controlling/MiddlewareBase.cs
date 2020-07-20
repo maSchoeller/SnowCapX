@@ -13,7 +13,7 @@ namespace SnowCapX.Server.Controlling
         {
         }
 
-        public async Task InvokeAsync(VehicleContext context, ProcessPoint next)
+        public async Task InvokeAsync(SnowCapContext context, ProcessPoint next)
         {
             if (await CanInvokeAsync())
                 await InnerInvokeAsync(context, next);
@@ -24,6 +24,6 @@ namespace SnowCapX.Server.Controlling
         protected virtual Task<bool> CanInvokeAsync()
             => Task.FromResult(true);
 
-        protected abstract Task InnerInvokeAsync(VehicleContext context, ProcessPoint next);
+        protected abstract Task InnerInvokeAsync(SnowCapContext context, ProcessPoint next);
     }
 }

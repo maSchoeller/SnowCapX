@@ -9,15 +9,15 @@ namespace SnowCapX.Server.Controlling
 {
     internal class InlineMiddleware : IProcessPointMiddleware
     {
-        private readonly Func<VehicleContext, ProcessPoint, Task> _callback;
+        private readonly Func<SnowCapContext, ProcessPoint, Task> _callback;
 
         public InlineMiddleware(
-            Func<VehicleContext, ProcessPoint, Task> callabck)
+            Func<SnowCapContext, ProcessPoint, Task> callabck)
         {
             _callback = callabck;
         }
 
-        public Task InvokeAsync(VehicleContext context, ProcessPoint next)
+        public Task InvokeAsync(SnowCapContext context, ProcessPoint next)
         {
             return _callback(context, next);
         }

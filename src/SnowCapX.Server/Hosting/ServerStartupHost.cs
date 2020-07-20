@@ -14,26 +14,30 @@ namespace SnowCapX.Server.Hosting
     internal class ServerStartupHost : IHostedService
     {
         private readonly ProcessChain _processChain;
-        private readonly IVehicleStabilizer _stabilizer;
+        private readonly ISnowCapStabilizerHost _stabilizer;
         private readonly ILogger<ServerStartupHost>? _logger;
+        private readonly IHostApplicationLifetime _lifetime;
 
         public ServerStartupHost(ProcessChain processChain,
-            IVehicleStabilizer stabilizer,
+            ISnowCapStabilizerHost stabilizer,
+            IHostApplicationLifetime lifetime,
             ILogger<ServerStartupHost>? logger = null)
         {
             _processChain = processChain;
             _stabilizer = stabilizer;
+            _lifetime = lifetime;
             _logger = logger;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            return Task.Run(() =>
+            _lifetime.ApplicationStarted.Register(() =>
             {
                 const int maxTries = 4;
                 BootstrapProcessChain(maxTries);
                 BootstrapStabilizer(maxTries);
             });
+            return Task.CompletedTask;
         }
 
         private void BootstrapStabilizer(int maxTries)
@@ -48,7 +52,7 @@ namespace SnowCapX.Server.Hosting
                 do
                 {
                     _logger.LogInformation("Start {0}. time to start the Stabilizer", tries);
-                    if (_stabilizer.TryStart())
+                    if (!_stabilizer.TryStart())
                     {
                         _logger?.LogWarning("{0}.try to start the Stabilizer failed.", tries);
                     }
@@ -76,7 +80,7 @@ namespace SnowCapX.Server.Hosting
                 do
                 {
                     _logger.LogInformation("Start {0}. time to start the ProcessChain", tries);
-                    if (_processChain.TryStart())
+                    if (!_processChain.TryStart())
                     {
                         _logger?.LogWarning("{0}.try to start the ProcessChain failed.", tries);
                     }

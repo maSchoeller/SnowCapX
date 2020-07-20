@@ -4,10 +4,8 @@ using System.Text;
 
 namespace SnowCapX.Server.Abstracts
 {
-    public interface IVehicleStabilizer
+    public class StabilizerOptions
     {
-        bool IsRunning { get; }
-        bool TryStart();
-        bool TryStop();
+        public int Duration { get; set; } = 500;
     }
 }

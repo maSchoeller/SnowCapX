@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace SnowCapX.Server.Abstracts
 {
-    public delegate Task ProcessPoint(VehicleContext context);
+    public delegate Task ProcessPoint(SnowCapContext context);
 }

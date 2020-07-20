@@ -88,31 +88,31 @@ namespace SnowCapX.Server.Hosting
         internal static bool InvokeConfigureServices(object startup, IServiceCollection services, HostBuilderContext context)
         {
             var startuptype = startup.GetType();
-            var methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(IServiceCollection) });
+            var methode = startuptype.GetMethod(ConfigureServicesMethodename, new[] { typeof(IServiceCollection) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new[] { services });
                 return true;
             }
-            methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(IServiceCollection), typeof(IConfiguration) });
+            methode = startuptype.GetMethod(ConfigureServicesMethodename, new[] { typeof(IServiceCollection), typeof(IConfiguration) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new object[] { services, context.Configuration });
                 return true;
             }
-            methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(IServiceCollection), typeof(IConfiguration), typeof(IHostEnvironment) });
+            methode = startuptype.GetMethod(ConfigureServicesMethodename, new[] { typeof(IServiceCollection), typeof(IConfiguration), typeof(IHostEnvironment) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new object[] { services, context.Configuration, context.HostingEnvironment });
                 return true;
             }
-            methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(IServiceCollection), typeof(IHostEnvironment) });
+            methode = startuptype.GetMethod(ConfigureServicesMethodename, new[] { typeof(IServiceCollection), typeof(IHostEnvironment) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new object[] { services, context.HostingEnvironment });
                 return true;
             }
-            methode = startuptype.GetMethod(ConfigurePorcessChainMethodename, new[] { typeof(IServiceCollection), typeof(IHostEnvironment), typeof(IConfiguration) });
+            methode = startuptype.GetMethod(ConfigureServicesMethodename, new[] { typeof(IServiceCollection), typeof(IHostEnvironment), typeof(IConfiguration) });
             if (!(methode is null))
             {
                 methode.Invoke(startup, new object[] { services, context.HostingEnvironment, context.Configuration });
