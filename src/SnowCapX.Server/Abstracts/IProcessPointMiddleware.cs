@@ -8,6 +8,6 @@ namespace SnowCapX.Server.Abstracts
 {
     public interface IProcessPointMiddleware
     {
-        Task InvokeAsync(VehicleContext context, ProcessPoint next);
+        Task InvokeAsync(ProcessContext context, ProcessPoint next);
     }
 }

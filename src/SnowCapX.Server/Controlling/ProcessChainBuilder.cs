@@ -23,7 +23,7 @@ namespace SnowCapX.Server.Controlling
 
         internal ProcessChain Build()
         {
-            static Task Last(VehicleContext _) => Task.CompletedTask;
+            static Task Last(ProcessContext _) => Task.CompletedTask;
             ProcessPoint app = Last;
             foreach (var mid in middlewareList.Reverse())
                 app = mid(app);

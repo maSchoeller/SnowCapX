@@ -43,7 +43,7 @@ namespace SnowCapX.Server.Controlling
             return builder;
         }
 
-        public static ProcessChainBuilder Invoke(this ProcessChainBuilder builder, Func<VehicleContext, ProcessPoint, Task> middleware)
+        public static ProcessChainBuilder Invoke(this ProcessChainBuilder builder, Func<ProcessContext, ProcessPoint, Task> middleware)
         {
             if (builder is null)
             {

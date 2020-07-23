@@ -15,14 +15,14 @@ namespace SnowCapX.Server.Controlling
     internal class ProcessChain
     {
         private readonly ProcessPoint _pipe;
-        private readonly VehicleContext _context;
+        private readonly ProcessContext _context;
         private readonly ILogger<ProcessChain>? _logger;
         private readonly MovementHost _movementHost;
 
         public ProcessChain(
           ProcessPoint pipe,
           MovementHost movementHost,
-          VehicleContext vehicleContext,
+          ProcessContext vehicleContext,
           ILogger<ProcessChain>? logger = null)
         {
             _movementHost = movementHost ?? throw new ArgumentNullException(nameof(movementHost));
