@@ -8,12 +8,16 @@ namespace SnowCapX.Server.Enviroment
 {
     public class ProcessContext
     {
-        public ProcessContext()
+        public ProcessContext(IServiceProvider provider,
+            IConfiguration configuration,
+            MovementSource movement)
         {
-            //Todo: add real services
             Properties = new Dictionary<object, object>();
+            Services = provider;
+            Configuration = configuration;
+            Movement = movement;
         }
-        
+
         public virtual IServiceProvider Services { get; } = null!;
         public virtual IDictionary<object, object> Properties { get; }
         public virtual MovementSource Movement { get; } = null!;

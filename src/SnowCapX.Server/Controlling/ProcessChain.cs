@@ -27,7 +27,7 @@ namespace SnowCapX.Server.Controlling
         public ProcessChain(IOptions<ProcessChainOptions> options,
           ProcessPoint pipe,
           MovementHost movementHost,
-          SnowCapContext snowCapContext,
+          ProcessContext snowCapContext,
           ILogger<ProcessChain>? logger = null)
             : this(options.Value, pipe, movementHost, snowCapContext, logger)
         { }
