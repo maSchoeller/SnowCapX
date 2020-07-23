@@ -4,13 +4,13 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using SnowCapX.Server.Abstracts;
 using SnowCapX.Server.Controlling;
+using SnowCapX.Server.Enviroment;
+using SnowCapX.Server.Movements;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SnowCapX.Server.Hosting
 {
-    internal class VehicleServerBuilder : IVehicleServerBuilder
+    internal class SnowCapServerBuilder : ISnowCapServerBuilder
     {
         private readonly IHostBuilder _builder;
         private Action<ProcessChainBuilder>? _configure;
@@ -19,7 +19,7 @@ namespace SnowCapX.Server.Hosting
 
         public bool UseSameStartup { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public VehicleServerBuilder(IHostBuilder builder)
+        public SnowCapServerBuilder(IHostBuilder builder)
         {
             _builder = builder ?? throw new ArgumentNullException(nameof(builder));
         }
@@ -47,6 +47,7 @@ namespace SnowCapX.Server.Hosting
                     }
 
                     ConfigureServices(c => StartupResolver.InvokeConfigureServices(startup, c, context));
+                    ConfigureServices(c => AddCoreServices(c));
                     ConfigureProcessChain(b => StartupResolver.InvokeConfigureProcessChain(startup, b, context));
                 }                
                 _confServices?.Invoke(collection);
@@ -57,6 +58,17 @@ namespace SnowCapX.Server.Hosting
                     return builder.Build();
                 });
             });
+        }
+
+        private void AddCoreServices(IServiceCollection services)
+        {
+            services.TryAddSingleton<SnowCapContext>();
+            services.TryAddSingleton<MovementHost>();
+            services.TryAddSingleton<MovementSource>();
+            services.TryAddSingleton<MovementTarget>();
+            services.TryAddSingleton<IMovementTransformer, DefaultMovementTransformer>();
+            services.TryAddSingleton<ISnowCapStabilizerHost, DefaultStabilizerHost>();
+            services.AddHostedService<ServerStartupHost>();
         }
 
     }

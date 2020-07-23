@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SnowCapX.Server.Abstracts
 {
-    public interface IVehicleServerBuilder
+    public interface ISnowCapServerBuilder
     {
         public bool UseSameStartup { get; set; }
 
