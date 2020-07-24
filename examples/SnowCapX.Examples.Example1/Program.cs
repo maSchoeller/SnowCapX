@@ -28,6 +28,7 @@ namespace SnowCapX.Examples.Example1
         {
             services.AddSingleton<ISnowCapStabilizer, DefaultStabilizer>();
         }
+
         public void ConfigureProcessChain(ProcessChainBuilder builder)
         {
             builder.Invoke(async (c, n) =>

@@ -1,0 +1,41 @@
+﻿syntax = "proto3";
+
+package settings;
+
+option csharp_namespace = "SnowCapX.Core.Communications.Grpc";
+
+service SettingsCoomunication {
+  rpc ManualSync(ManualSyncRequest) returns (ManualSyncResponse) {}
+  rpc SyncIntegerVariable (stream IntegerData) returns (stream IntegerData) {}
+  rpc SyncDoubleVariable (stream FloatData) returns (stream FloatData) {}
+  rpc SyncFloatVariable (stream DoubleData) returns (stream DoubleData) {}
+  rpc SyncStringVariable (stream StringData) returns (stream StringData) {}
+}
+
+message ManualSyncRequest{
+}
+
+message ManualSyncResponse{
+}
+
+
+message IntegerData {
+  string path = 1;
+  int32 value = 2;
+}
+
+message FloatData {
+  string path = 1;
+  float value = 2;
+}
+
+message DoubleData {
+  string path = 1;
+  double value = 2;
+}
+
+message StringData {
+  string path = 1;
+  string value = 2;
+}
+

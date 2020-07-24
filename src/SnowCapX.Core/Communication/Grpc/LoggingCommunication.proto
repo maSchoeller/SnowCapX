@@ -1,0 +1,30 @@
+﻿syntax = "proto3";
+
+package logging;
+option csharp_namespace = "SnowCapX.Core.Communications.Grpc";
+
+service LoggingCoomunication {
+  rpc GetLogStream (LogStreamRequest) returns (stream LogMessage) {}
+}
+
+message LogStreamRequest {
+}
+
+message LogMessage {
+  int32 EventId = 1;
+  string Message = 2;
+  LogLevel Level = 3;
+  string Caller = 4;
+  string ExceptionMessage = 5;
+}
+
+enum LogLevel {
+	Trace = 0;
+	Debug = 1;
+	Information = 2;
+	Warning = 3;
+	Error = 4;
+	Critical = 5;
+	None = 6;
+}
+

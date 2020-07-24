@@ -62,7 +62,7 @@ namespace SnowCapX.Server.Hosting
 
         private void AddCoreServices(IServiceCollection services)
         {
-            services.TryAddSingleton<SnowCapContext>();
+            services.TryAddSingleton<ProcessContext>();
             services.TryAddSingleton<MovementHost>();
             services.TryAddSingleton<MovementSource>();
             services.TryAddSingleton<MovementTarget>();
